@@ -1,0 +1,20 @@
+<%= form_for @schedule do |schedule| %>
+<p>
+	<%= schedule.label :semester%>
+	<%= schedule.text_field :semester%>
+</br>
+<%= schedule.label :section%>
+	<%=schedule.text_field :section%>
+</br>
+<%= schedule.label :branch%>
+	<%= schedule.text_field :branch%>
+</br>
+	<%= schedule.label :day%>
+	<%= schedule.text_field :day%>
+</br>
+	<%= schedule.label :time%>
+	<%= schedule.text_field :time%>
+</br>
+	<%= schedule.submit "submit"%></p>
+</br>
+<%end%>

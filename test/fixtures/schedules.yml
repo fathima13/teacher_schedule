@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  branch: MyString
+  semester: 1
+  day: MyString
+  section: MyString
+  time: MyString
+  teacher: one
+
+two:
+  branch: MyString
+  semester: 1
+  day: MyString
+  section: MyString
+  time: MyString
+  teacher: two

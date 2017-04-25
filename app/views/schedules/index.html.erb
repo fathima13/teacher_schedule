@@ -1,0 +1,19 @@
+<h1>Schedules#index</h1>
+<table>
+<%= @schedules.each do |schedule|%>
+<tr><td>Semester</td>
+	<td><%=schedule.semester%></td>
+	<td>Section</td>
+	<td><%=schedule.sectionr%></td>
+	<td>Branch</td>
+	<td><%=schedule.branch%></td>	 
+	<td>Day</td>
+	<td><%=schedule.day%></td>
+	<td>Time</td>
+	<td><%=schedule.time%></td>
+	<td><%=link_to 'edit',edit_schedule_url(id:schedule.id)%></td>
+</tr>
+<%end%>
+</table>
+<%=link_to 'new',new_schedule_url%>
+

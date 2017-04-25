@@ -1,0 +1,12 @@
+<h1>Teachers#index</h1>
+<table>
+<% @teachers.each do |teacher|%>
+<tr><td>Name</td>
+	<td><%=teacher.name%></td>
+	<td><%=link_to 'edit', edit_teacher_url(id:teacher.id)%></td>
+	<td><%=link_to 'show',teacher_url(id:teacher.id)%></td>
+	<td><%=link_to 'delete',teacher_url(id:teacher.id), method: "delete"%></td>
+</tr>
+<%end%>
+</table>
+<%=link_to 'new', new_teacher_url%>
