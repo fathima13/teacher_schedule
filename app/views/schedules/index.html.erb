@@ -1,19 +1,52 @@
 <h1>Schedules#index</h1>
+<%= form_for [@teacher,@schedule] do |f| %>
+<p>
+	<div class="field">
+<%= f.label :branch%>
+	<%= f.text_field :branch%>
+</div>
+	<div class="field">
+	<%= f.label :semester%>
+	<%= f.text_field :semester%>
+</div>
+<div class="field">
+<%= f.label :section%>
+	<%=f.text_field :section%>
+</div>
+
+<div class="field">
+	<%= f.label :day%>
+	<%= f.text_field :day%>
+</div>
+<div class="field">
+	<%= f.label :time%>
+	<%= f.text_field :time%>
+</div>
+    
+ <div class="field">
+	<%= f.hidden_field :teacher_id, value: @teacher.id %></div>
+	<%= f.submit "submit"%>
+</br></p>
+<%end%>
 <table>
-<%= @schedules.each do |schedule|%>
-<tr><td>Semester</td>
+<% @schedules.each do |schedule|%>
+<% if schedule.persisted? %>
+<tr><td>Branch</td>
+	<td><%=schedule.branch%></td><td>Semester</td>
 	<td><%=schedule.semester%></td>
 	<td>Section</td>
-	<td><%=schedule.sectionr%></td>
-	<td>Branch</td>
-	<td><%=schedule.branch%></td>	 
+	<td><%=schedule.section%></td>	 
 	<td>Day</td>
 	<td><%=schedule.day%></td>
 	<td>Time</td>
 	<td><%=schedule.time%></td>
-	<td><%=link_to 'edit',edit_schedule_url(id:schedule.id)%></td>
+	<td>Teacher Id</td>
+	<td><%=schedule.teacher_id%> </td>
+	<td><%=link_to 'edit',edit_teacher_schedule_url(@teacher.id,schedule.id)%></td>
+	<td><%=link_to 'show',teacher_schedule_url(@teacher.id,schedule.id)%></td>
+	<td><%=link_to 'delete',teacher_schedule_url(@teacher.id,schedule.id)%><td> 
 </tr>
 <%end%>
+<%end%>
 </table>
-<%=link_to 'new',new_schedule_url%>
 

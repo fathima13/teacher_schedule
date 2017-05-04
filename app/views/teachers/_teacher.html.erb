@@ -1,8 +1,12 @@
-<%=form_for @teacher do |teacher|%>
+<%=form_for(teacher) do |f|%>
 <p>
-<%=teacher.label :name%>
-<%=teacher.text_field :name%>
-<%=teacher.submit "submit"%>
+<%=f.label :name%>
+<%=f.text_field :name%>
+<%=f.label :gender%>
+<%=f.text_field :gender%>
+<%=f.label :dob%>
+<%= f.date_select :dob, :start_year=>1958,:end_year=>1997 %>
+<%=f.submit "submit"%>
 </p>
 <%end%>
 <%=link_to 'back', teachers_url%>
