@@ -2,29 +2,20 @@ class TeachersController < ApplicationController
    before_action :set_teacher, only: [:show, :edit, :update, :destroy]
 
     def index
-     
-       @teachers=Teacher.all.order("name asc")
+      @teachers=Teacher.all
       if params[:q].present?
-    @teachers=Teacher.where("name ilike ?","%#{params[:q]}%" ).order("name asc")
-  
-  elsif params[:search].present?
-    if(params[:sortway]=="Order By Desc")   
-    @teachers = Teacher.search(params.require(:search))
-  @teachers = @teachers.where("dob>? and dob<?","1960-01-01","1965-12-30").order("dob asc")
-
-    else
-     byebug     
-    @teachers = Teacher.search(params.require(:search))
-  @teachers = @teachers.where("dob>? and dob<?","1960-01-01","1965-12-30").order("dob asc")
-
+        @teachers=Teacher.where("name ilike ?","%#{params[:q]}%" ).order("name asc")
+      elsif params[:search].present?
+        @start_date  = (Date.civil(params[:teacher]["start_date(1i)"].to_i,params[:teacher]["start_date(2i)"].to_i,params[:teacher]["start_date(3i)"].to_i)).strftime("%Y-%m-%d")
+        @end_date  = (Date.civil(params[:teacher]["end_date(1i)"].to_i,params[:teacher]["end_date(2i)"].to_i,params[:teacher]["end_date(3i)"].to_i)).strftime("%Y-%m-%d")
+        if(params[:sortway]=="Order By Desc")
+          @teachers = Teacher.search(params.require(:search)).where("dob>? and dob<?",@start_date,@end_date).order("dob asc")
+        else
+          params
+          @teachers = Teacher.search(params.require(:search)).where("dob>? and dob<?",@start_date,@end_date).order("dob asc")
+        end
+      end
     end
-end
- # if params.require(:teacher).permit(:start_date).present? and paramsrequire(:teacher).permit(:end_date).present?
- #  byebug
- #  @teachers = @teacher.where("dob>? and dob<?",params[:teacher][:start_date],params[:teacher][:end_date])
- #       end
- 
-  end
   
   def new
   	@teacher=Teacher.new
@@ -53,7 +44,5 @@ end
   def teacher_params
       params.require(:teacher).permit(:name, :gender, :dob)
     end
-   def timeslot_params(name)
-    params.require(teacher: :start_date+'ni')
-  end
+   
  end
