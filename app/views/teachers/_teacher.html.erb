@@ -1,12 +1,12 @@
 <%=form_for(teacher) do |f|%>
-<p>
-<%=f.label :name%>
-<%=f.text_field :name%>
-<%=f.label :gender%>
-<%=f.text_field :gender%>
-<%=f.label :dob%>
-<%= f.date_select :dob, :start_year=>1958,:end_year=>1997 %>
-<%=f.submit "submit"%>
-</p>
+  <p>
+    <%=f.label :name%>
+    <%=f.text_field :name%>
+    <%=f.label :gender%>
+    <%=f.select :gender, Teacher::GENDERS, prompt: true %>
+    <%= f.label :dob%>
+    <%= f.text_field :dob,  "data-provide" => 'datepicker' %>
+    <%=f.submit "submit"%>
+  </p>
 <%end%>
 <%=link_to 'back', teachers_url%>

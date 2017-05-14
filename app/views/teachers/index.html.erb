@@ -1,18 +1,11 @@
 <h1>Teachers#index</h1>
-<%= form_tag(teachers_url, method: "get") do %>
- <%= label_tag(:q, "Search for:") %>
-  <%= text_field_tag(:q,params[:q]) %>
-    <%= submit_tag("Search") %>
-<% end %>
 <%= form_tag(teachers_url, :method => "get", id: "search-form") do %>
-
-    <%= text_field_tag :search, params[:search], placeholder: "" %>
-
-    <%= select_tag(:sortway, options_for_select(["Order By Asc","Order By Desc"])) %>
-   <%= date_select('teacher', 'start_date', :start_year=>1958,:end_year=>1997)%>
-   	<%= date_select('teacher','end_date', :start_year=>1958,:end_year=>1997)%>
-
-    <%= submit_tag "Search", :name => nil %>
+  <%= text_field_tag(:q, params[:q]) %>
+  <%= select_tag :order_by_field, options_for_select(Teacher::ORDER_BY_FIELDS, params[:order_by_field]), prompt: "Order Field" %>
+  <%= select_tag(:order_by, options_for_select(Teacher::ORDER_BY, params[:order_by]), prompt: "Order By") %>
+  <%= text_field_tag :start_date, params[:start_date], "data-provide" => 'datepicker' %>
+  <%= text_field_tag :end_date, params[:end_date], "data-provide" => 'datepicker' %>
+  <%= submit_tag "Search", :name => nil %>
 <% end %>
 <table>
 <% @teachers.each do |teacher|%>
