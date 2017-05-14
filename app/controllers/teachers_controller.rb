@@ -9,7 +9,7 @@ class TeachersController < ApplicationController
         @start_date  = (Date.civil(params[:teacher]["start_date(1i)"].to_i,params[:teacher]["start_date(2i)"].to_i,params[:teacher]["start_date(3i)"].to_i)).strftime("%Y-%m-%d")
         @end_date  = (Date.civil(params[:teacher]["end_date(1i)"].to_i,params[:teacher]["end_date(2i)"].to_i,params[:teacher]["end_date(3i)"].to_i)).strftime("%Y-%m-%d")
         if(params[:sortway]=="Order By Desc")
-          @teachers = Teacher.search(params.require(:search)).where("dob>? and dob<?",@start_date,@end_date).order("dob asc")
+          @teachers = Teacher.search(params.require(:search)).where("dob>? and dob<?",@start_date,@end_date).order("dob desc")
         else
           params
           @teachers = Teacher.search(params.require(:search)).where("dob>? and dob<?",@start_date,@end_date).order("dob asc")
@@ -32,7 +32,7 @@ class TeachersController < ApplicationController
   	@teacher.save
   	redirect_to teachers_url
   end
-   def show
+  def show
   	  end
    def destroy
   	@teacher.destroy

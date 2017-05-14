@@ -5,12 +5,12 @@ class SchedulesController < ApplicationController
     @schedule=@schedules.build
   end
   def new
-     @teacher=Teacher.find(params[:teacher_id])
+    @teacher=Teacher.find(params[:teacher_id])
     @schedules=@teacher.schedules
     @schedule=@schedules.build
   end
   def create
-  	 @teacher=Teacher.find(params[:teacher_id])
+ 	 @teacher=Teacher.find(params[:teacher_id])
     @schedules=@teacher.schedules
     @schedule=@schedules.build
   	@schedule.section=params[:schedule][:section]
