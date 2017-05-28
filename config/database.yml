@@ -6,8 +6,8 @@
 #
 default: &default
   adapter: postgresql
-  username: postgres
-  password: vivek
+  username: farheen
+  password: password
 
 development:
   <<: *default

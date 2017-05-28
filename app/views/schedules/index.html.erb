@@ -1,4 +1,7 @@
 <h1>Schedules#index</h1>
+<% if flash[:message] %>
+    <div class="message"><%= flash[:message] %></div>
+  <% end %>
 <%= form_for [@teacher,@schedule] do |f| %>
 <p>
 	<div class="field">
@@ -44,7 +47,7 @@
 	<td><%=schedule.teacher_id%> </td>
 	<td><%=link_to 'edit',edit_teacher_schedule_url(@teacher.id,schedule.id)%></td>
 	<td><%=link_to 'show',teacher_schedule_url(@teacher.id,schedule.id)%></td>
-	<td><%=link_to 'delete',teacher_schedule_url(@teacher.id,schedule.id)%><td> 
+	<td><%=link_to 'delete',teacher_schedule_url(@teacher.id,schedule.id),method: 'delete'%><td> 
 </tr>
 <%end%>
 <%end%>

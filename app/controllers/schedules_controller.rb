@@ -19,7 +19,11 @@ class SchedulesController < ApplicationController
     @schedule.day=params[:schedule][:day]
     @schedule.time=params[:schedule][:time] 
     @schedule.teacher_id=params[:schedule][:teacher_id]
-  	@schedule.save
+  	if @schedule.save
+      flash[:message] = "slot scheduled"
+    else
+      flash[:message] = "slot is not scheduled. Same day and time already exist"
+    end
   	redirect_to teacher_schedules_url(teacher_id:@teacher)
   end
   def edit

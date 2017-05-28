@@ -12,16 +12,16 @@ class Teacher < ApplicationRecord
       teachers = teachers.where("name ilike ?", "%#{params[:q]}%")
     end
     if params[:start_date].present?
-      teachers = teachers.where("dob > ?", params[:start_date])
+      teachers = teachers.where("dob >= ?", params[:start_date])
     end
     if params[:end_date].present?
-      teachers = teachers.where("dob < ?", params[:end_date])
+      teachers = teachers.where("dob <= ?", params[:end_date])
     end
     if params[:order_by_field].present?
       order_by = params[:order_by] || "asc"
       order_by_field = params[:order_by_field]
       teachers = teachers.order("#{order_by_field} #{order_by}")
     end
-    teachers
+    teachers.all
   end
 end

@@ -1,3 +1,4 @@
 class Schedule < ApplicationRecord
   belongs_to :teacher
-end
+    validates_uniqueness_of :teacher_id, scope: [:day, :time] 
+  end
